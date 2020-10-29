@@ -5,4 +5,3 @@ Discord: machiamavlad#7048
 
 Next Releases: 
 - vRP Dealership + Save-Tunning
-- My edit for Dunko's vRP (https://github.com/DunkoUK/dunko_vrp)
