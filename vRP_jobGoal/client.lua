@@ -8,17 +8,13 @@ local facut = 0
 local showing = true
 local jobGoal = 0
 
+fcJobG.initJobGoal = function(amount,jobgoal)
+	jobGoal = jobgoal	
+end
 
-Citizen.CreateThread(function()
-    while true do
-        Citizen.Wait(5000)
-      
-        fsJobG.getDate({},function(date)
-            facut = date["facut"]
-            jobGoal = date["jobGoal"]
-        end)
-    end
-end)
+fcJobG.cresteGoal = function(amount)
+	facut = facut + amount	
+end
 
 Citizen.CreateThread(function()
     while true do
