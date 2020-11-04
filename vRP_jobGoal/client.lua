@@ -12,7 +12,7 @@ fcJobG.initJobGoal = function(amount,jobgoal)
 	jobGoal = jobgoal	
 end
 
-fcJobG.cresteGoal = function(amount)
+fcJobG.setGoal = function(amount)
 	facut = facut + amount	
 end
 
