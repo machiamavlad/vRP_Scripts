@@ -22,8 +22,10 @@ end
 
 function fsJobG.cresteJobGoal(amount)
     facut = facut + amount
+    fcJobG.setGoal(-1,{facut})
     if(facut >= jobGoal)then
       facut = 0
+      fcJobG.setGoal(-1,{facut})
       local users = vRP.getUsers({})
       for machiamavlad,zeu in pairs(users) do
         local uSource = vRP.getUserSource({machiamavlad}) 
@@ -53,33 +55,19 @@ end)
 
 RegisterCommand("jgreset", function(source)
   local user_id = vRP.getUserId({source})
-  if(vRP.isUserFondator({user_id}))then
-    local users = vRP.getUsers({})
-    for i,v in pairs(users) do
+  if(vRP.hasPermission({user_id,permission}))then
       facut = 0
+      fcJobG.setGoal(-1,{facut})
       TriggerClientEvent("chatMessage", -1, "^1[JobGoal] ^2"..GetPlayerName(source).."^0 has reseted the ^1Job Goal")
-    end
   else
     vRPclient.notify(source,{"~r~You don't have permission to execute this command!"})
   end
 end)
 
-function fsJobG.getDate()
-    
-    local jobGoal = tonumber(jobGoal)
-    local facut = tonumber(facut)
-
-    if(facut == nil) then facut = 0 end
-    local date = {
-      ["facut"] = facut,
-      ["jobGoal"] = jobGoal
-    }
-    return date
-end
-
 AddEventHandler("vRP:playerSpawn",function(user_id,source,first_spawn)
     if first_spawn then
       facut = facut
       jobGoal = jobGoal
+      fcJobG.initJobGoal(source,{facut,jobGoal})
     end
 end)
