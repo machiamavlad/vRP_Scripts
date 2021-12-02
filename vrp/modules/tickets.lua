@@ -9,15 +9,6 @@
 --                            `-    \`_`"'-                          --
 -----------------------------------------------------------------------
 
-function vRP.sendStaffMessage(msg)
-    for k, v in pairs(vRP.rusers) do
-        local ply = vRP.getUserSource(tonumber(k))
-        if vRP.isUserTrialHelper(user_id) and ply then
-            TriggerClientEvent("chatMessage", ply, "^1System: ^0"..msg)
-        end
-    end
-end
-
 -- Tickets
 local delayTickets = 300 -- delay in secunde
 local adminTickets = {}
@@ -43,7 +34,7 @@ local function canCreateTicket(user_id, player)
     for nuser_id, player in pairs(players) do
         player = vRP.getUserSource(nuser_id)
         if player then
-            local isAdmin = vRP.isUserTrialHelper(nuser_id)
+            local isAdmin = vRP.hasPermission(nuser_id, "admin.tickets")
             if isAdmin then
                 TriggerClientEvent("chatMessage", player, "^1Tickets: ^0Ticket nou creeat de catre jucatorul "..playerName.."("..user_id..")")
                 if not adminsOnline then
@@ -92,7 +83,7 @@ end
 RegisterCommand("tk", function(player, args, rawCommand)
     local user_id = vRP.getUserId(player)
     if user_id then
-        local isAdmin = vRP.isUserTrialHelper(user_id)
+        local isAdmin = vRP.hasPermission(user_id, "admin.tickets")
         if isAdmin then
             local ticketCount = countTable(adminTickets)
             if ticketCount > 0 then
