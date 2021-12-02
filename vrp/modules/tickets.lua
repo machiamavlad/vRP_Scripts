@@ -10,6 +10,14 @@
 -----------------------------------------------------------------------
 
 -- Tickets
+function vRP.sendStaffMessage(msg)
+    for k, v in pairs(vRP.rusers) do
+        local ply = vRP.getUserSource(tonumber(k))
+        if vRP.isUserTrialHelper(user_id) and ply then
+            TriggerClientEvent("chatMessage", ply, "^1System: ^0"..msg)
+        end
+    end
+end
 local delayTickets = 300 -- delay in secunde
 local adminTickets = {}
 
