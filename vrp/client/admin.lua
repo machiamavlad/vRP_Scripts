@@ -1,4 +1,4 @@
-function drawTxt(text)
+local function drawTxt(text)
     SetTextFont(6)
     SetTextScale(0.40, 0.40)
     SetTextWrap(0.0, 1.0)
